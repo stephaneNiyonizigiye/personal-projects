@@ -18,7 +18,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-
+      - name : Installing dependacies
+        run: npm install
       - name: Build Next.js app
         run: npm run build
 
@@ -29,6 +30,6 @@ jobs:
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
           vercel-args: '--prod'  
-          working-directory: '/supaPost'  
+          working-directory: './'  
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}

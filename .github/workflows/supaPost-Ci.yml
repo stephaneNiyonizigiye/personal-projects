@@ -18,8 +18,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-      - name : Installing dependacies
-        run: npm install
+          
       - name: Build Next.js app
         run: npm run build
 

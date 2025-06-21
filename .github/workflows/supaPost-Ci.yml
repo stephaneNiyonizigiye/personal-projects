@@ -2,17 +2,21 @@ name: supaPost deployment to vercel
 
 on:
   push:
-    paths:
-      - 'supaPost/**'
-  pull_request:
-    paths:
-      - 'supaPost/**'
+    branches:
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./supaPost
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -31,7 +35,7 @@ jobs:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          vercel-args: '--prod'  
-          working-directory: '/supaPost'  
+          vercel-args: '--prod'
+          working-directory: ./supaPost
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}

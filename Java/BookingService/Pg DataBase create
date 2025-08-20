@@ -1,0 +1,7 @@
+docker run --name Booking_Service \
+  -e POSTGRES_USER=PrincipalUser \
+  -e POSTGRES_PASSWORD=BookingServicePass\
+  -e POSTGRES_DB=Booking\
+  -p 5432:5432 \
+  -v pgdata:/var/lib/postgresql/data \
+  -d postgres:latest
